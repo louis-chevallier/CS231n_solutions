@@ -2,7 +2,8 @@ from builtins import range
 import numpy as np
 from random import shuffle
 from past.builtins import xrange
-
+from utillc import *
+print_everything()
 def softmax_loss_naive(W, X, y, reg):
     """
     Softmax loss function, naive implementation (with loops)
@@ -86,7 +87,9 @@ def softmax_loss_vectorized(W, X, y, reg):
     loss = np.sum(-np.log(correct_score/scores_sum))
 
     # Compute the gradient
-    derivate = np.exp(scores)/np.expand_dims(scores_sum, axis=10)
+    #EKON(scores.shape, scores_sum.shape)
+    #EKOX(np.expand_dims(scores_sum, axis=1).shape)
+    derivate = np.exp(scores)/np.expand_dims(scores_sum, axis=1)
     derivate[np.arange(num_train), y] -= 1
     dW = X.T.dot(derivate)
 
