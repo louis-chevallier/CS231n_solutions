@@ -38,18 +38,14 @@ def softmax_loss_naive(W, X, y, reg):
     num_train = X.shape[0]
     num_classes = W.shape[1]
     for i in range(num_train):
-        scores = X[i].dot(W)
-        scores -= np.max(scores)    # For numerical stability
-        loss += - np.log(np.exp(scores[y[i]]) / np.sum(np.exp(scores)))
-        for j in range(num_classes):
-            dW[:, j] += (np.exp(scores[j]) * X[i]) / np.sum(np.exp(scores))
-        dW[:, y[i]] -= X[i]
+      ...
+
 
     # Calculate the mean
     loss /= num_train
     dW /= num_train
 
-    # Add the regularization to the loss and gradient.
+     # Add the regularization to the loss and gradient.
     loss += reg * np.sum(W * W)
     dW += 2 * reg * W
 
